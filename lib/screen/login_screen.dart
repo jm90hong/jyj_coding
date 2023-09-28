@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jyj_coding/component/app_text_form.dart';
 import 'package:jyj_coding/screen/add_user_screen.dart';
 
 
@@ -10,6 +11,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  TextEditingController idController = TextEditingController();
+  TextEditingController pwController = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,58 +31,18 @@ class _LoginScreenState extends State<LoginScreen> {
               size: 70,
             ),
             Text('로그인'),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              width: 270,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: TextField(
-                  style: TextStyle(color: Colors.black,fontSize:20),
-                  cursorColor: Colors.black,
-                  decoration: InputDecoration(
-
-                      isDense: true,
-                      fillColor: Colors.grey.shade300,
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                      hintText: '아이디'
-                  ),
-                ),
-              ),
+            AppTextField(
+              controller: idController,
+              hintText: '아이디',
+              isPassword: false,
             ),
+
+
             SizedBox(height: 12,),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              width: 270,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: TextField(
-                  obscureText: true,
-                  style: TextStyle(color: Colors.black,fontSize:20),
-                  cursorColor: Colors.black,
-                  decoration: InputDecoration(
-                      isDense: true,
-                      fillColor: Colors.grey.shade300,
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                      hintText: '비밀번호'
-                  ),
-                ),
-              ),
+            AppTextField(
+                controller: pwController,
+                hintText: '비밀번호',
+                isPassword: true
             ),
 
             SizedBox(height: 20,),
@@ -87,7 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
                child: InkWell(
                  borderRadius: BorderRadius.circular(10),
                  onTap: (){
-
+                   var id = idController.text;
+                   var pw = pwController.text;
+                   print(id);
+                   print(pw);
                  },
                  child: Container(
                    width: 270,
